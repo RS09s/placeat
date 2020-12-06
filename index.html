@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>PLACEAT</title>
+  <meta name="description" content="ごはんどうする？今日から即決！">
+  <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css">
+  <link rel="stylesheet" href="css/style.css"  >
+  <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+  <link rel="manifest" href="images/site.webmanifest">
+  <link rel="mask-icon" href="images/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+</head>
+
+<body onload=&quot;DefaultSave()&quot;>
+  <div class="wrapper">
+    <div id="headerid" class="big-bg">
+      <h1 class="page-title">PLACEAT</h1>
+    </div>
+
+    <div class="select">
+      <div id="main">
+        <div class="grid">
+          <div class="item">
+            <img src="images/japanese.jpg" alt="" class="logo"><br>
+            <button type="button" id="agree" class="japanese">和食</button>
+            <button type="button" id="disagree" class="japanese2" style="display: none;">和食</button>
+          </div>
+          <div class="item">
+            <img src="images/noodle.jpg" alt="" class="logo"><br>
+            <button type="button" id="agree" class="noodle">ラーメン</button>
+            <button type="button" id="disagree" class="noodle2" style="display: none;">ラーメン</button>
+          </div>
+          <div class="item">
+            <img src="images/sushi.jpg" alt="" class="logo"><br>
+            <button type="button" id="agree" class="sushi">寿司</button>
+            <button type="button" id="disagree" class="sushi2" style="display: none;">寿司</button>
+          </div>
+          <div class="item">
+            <img src="images/chinese.jpg" alt="" class="logo"><br>
+            <button type="button" id="agree" class="chinese">中華</button>
+            <button type="button" id="disagree" class="chinese2" style="display: none;">中華</button>
+          </div>
+          <div class="item">
+            <img src="images/italian.jpg" alt="" class="logo"><br>
+            <button type="button" id="agree" class="italian">イタリアン</button>
+            <button type="button" id="disagree" class="italian2" style="display: none;">イタリアン</button>
+          </div>
+          <div class="item">
+            <img src="images/asia.jpg" alt="" class="logo"><br>
+            <button type="button" id="agree" class="asia">アジア</button>
+            <button type="button" id="disagree" class="asia2" style="display: none;">アジア</button>
+          </div>
+          <div class="item">
+            <img src="images/yakiniku.jpg" alt="" class="logo"><br>
+            <button type="button" id="agree" class="yakiniku">焼肉</button>
+            <button type="button" id="disagree" class="yakiniku2" style="display: none;">焼肉</button>
+          </div>
+          <div class="item">
+            <img src="images/western.jpg" alt="" class="logo"><br>
+            <button type="button" id="agree" class="western">洋食</button>
+            <button type="button" id="disagree" class="western2" style="display: none;">洋食</button>
+          </div>
+          <div class="item">
+            <img src="images/nabe.jpg" alt="" class="logo"><br>
+            <button type="button" id="agree" class="nabe">鍋</button>
+            <button type="button" id="disagree" class="nabe2" style="display: none;">鍋</button>
+          </div>
+          <div class="item">
+            <img src="images/chicken.jpg" alt="" class="logo"><br>
+            <button type="button" id="agree" class="chicken">焼き鳥</button>
+            <button type="button" id="disagree" class="chicken2" style="display: none;">焼き鳥</button>
+          </div>
+          <div class="item">
+            <img src="images/steak.jpg" alt="" class="logo"><br>
+            <button type="button" id="agree" class="steak">ステーキ</button>
+            <button type="button" id="disagree" class="steak2" style="display: none;">ステーキ</button>
+          </div>
+          <div class="item">
+            <img src="images/seafood.jpg" alt="" class="logo"><br>
+            <button type="button" id="agree" class="seafood">海鮮</button>
+            <button type="button" id="disagree" class="seafood2" style="display: none;">海鮮</button>
+          </div>
+          <div class="item">
+            <img src="images/tempura.jpg" alt="" class="logo"><br>
+            <button type="button" id="agree" class="tempura">天ぷら</button>
+            <button type="button" id="disagree" class="tempura2" style="display: none;">天ぷら</button>
+          </div>
+          <div class="item">
+            <img src="images/okonomiyaki.jpg" alt="" class="logo"><br>
+            <button type="button" id="agree" class="okonomiyaki">お好み焼き</button>
+            <button type="button" id="disagree" class="okonomiyaki2" style="display: none;">お好み焼き</button>
+          </div>
+          <div class="item">
+            <img src="images/curry.jpg" alt="" class="logo"><br>
+            <button type="button" id="agree" class="curry">カレー</button>
+            <button type="button" id="disagree" class="curry2" style="display: none;">カレー</button>
+          </div>
+          <div class="item">
+            <img src="images/fastfood.jpg" alt="" class="logo"><br>
+            <button type="button" id="agree" class="fastfood">ファストフード</button>
+            <button type="button" id="disagree" class="fastfood2" style="display: none;">ファストフード</button><br>
+          </div>
+          <div>
+            <button type="button" class="reset" >Reset</button>
+          </div>
+          <div>
+            <button type="button" class="start" >Start</button>
+            <button type="button" class="stop" style="display: none;">Stop</button>
+            <button type="button" class="restart" style="display: none;">Restart</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="result">
+        <div class="rand_area">
+          <div class="rand_name"></div>
+          <img src="images/japanese.jpg" alt="" class="logo2 japanese3" style="display: none;">
+          <img src="images/noodle.jpg" alt="" class="logo2 noodle3" style="display: none;">
+          <img src="images/sushi.jpg" alt="" class="logo2 sushi3" style="display: none;">
+          <img src="images/chinese.jpg" alt="" class="logo2 chinese3" style="display: none;">
+          <img src="images/italian.jpg" alt="" class="logo2 italian3" style="display: none;">
+          <img src="images/asia.jpg" alt="" class="logo2 asia3" style="display: none;">
+          <img src="images/yakiniku.jpg" alt="" class="logo2 yakiniku3" style="display: none;">
+          <img src="images/western.jpg" alt="" class="logo2 western3" style="display: none;">
+          <img src="images/nabe.jpg" alt="" class="logo2 nabe3" style="display: none;">
+          <img src="images/chicken.jpg" alt="" class="logo2 chicken3" style="display: none;">
+          <img src="images/steak.jpg" alt="" class="logo2 steak3" style="display: none;">
+          <img src="images/seafood.jpg" alt="" class="logo2 seafood3" style="display: none;">
+          <img src="images/tempura.jpg" alt="" class="logo2 tempura3" style="display: none;">
+          <img src="images/okonomiyaki.jpg" alt="" class="logo2 okonomiyaki3" style="display: none;">
+          <img src="images/curry.jpg" alt="" class="logo2 curry3" style="display: none;">
+          <img src="images/fastfood.jpg" alt="" class="logo2 fastfood3" style="display: none;">
+          <div><button type="button"  class="research" style="display: none;">Nearby Restaurant</button></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="select2">
+      <div id="researchmap" class="map" style="display: none;"></div> <!-- 地図を表示する領域 -->
+      <div id="results" class="para" style="display: none;"></div>
+    </div>
+  </div><!-- wraperの終わり -->
+
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBkyQydFme_fjSA6o7NICyJN1SreZQ-fi0&libraries=places"></script>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script type="text/javascript" src="js/javascript.js"></script>
+  <footer>
+    <div class="wrapper">
+      <p><small>&copy; 2020</small><p>
+      </div>
+    </footer>
+  </body>
+  </html>
