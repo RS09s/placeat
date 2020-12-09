@@ -236,7 +236,7 @@ h1 {
   border-bottom: none;
   outline: none;
 }
-//スマホ用
+
 @media (max-width: 1200px){
   .select {
     flex-direction: column;
