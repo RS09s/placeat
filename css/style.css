@@ -236,7 +236,7 @@ h1 {
   border-bottom: none;
   outline: none;
 }
-
+//スマホ用
 @media (max-width: 1200px){
   .select {
     flex-direction: column;
@@ -253,7 +253,7 @@ h1 {
     width: 100%;
   }
   .rand_name{
-    font-size: 20px;
+    font-size: 6vw;
     text-align: center;
   }
   .research {
