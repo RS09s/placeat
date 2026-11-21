@@ -1,157 +1,270 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <title>PLACEAT</title>
-  <meta name="description" content="ごはんどうする？今日から即決！">
-  <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css">
-  <link rel="stylesheet" href="css/style.css"  >
-  <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
-  <link rel="manifest" href="images/site.webmanifest">
-  <link rel="mask-icon" href="images/safari-pinned-tab.svg" color="#5bbad5">
-  <meta name="msapplication-TileColor" content="#da532c">
-  <meta name="theme-color" content="#ffffff">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PLACEAT（プレイスイート）｜ごはんどうする？今日から即決！</title>
+  <meta name="description" content="「今日なに食べる？」を3秒で楽しく即決！16種類の料理ジャンルから今の気分を選んでルーレットを回し、現在地や指定エリア周辺の美味しいお店をGoogleマップで即座に検索できるグルメ意思決定アプリ。" />
+  <link rel="canonical" href="https://rs09s.github.io/placeat/" />
+
+  <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png" />
+  <link rel="manifest" href="images/site.webmanifest" />
+  <meta name="theme-color" content="#14110F" />
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://rs09s.github.io/placeat/" />
+  <meta property="og:title" content="PLACEAT（プレイスイート）｜ごはんどうする？今日から即決！" />
+  <meta property="og:description" content="16の料理ジャンルから気分を選んでルーレット即決＆周辺マップ検索！" />
+  <meta property="og:image" content="https://rs09s.github.io/placeat/images/background.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&family=Noto+Sans+JP:wght@400;500;700;900&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/style.css" />
 </head>
+<body>
 
-<body onload=&quot;DefaultSave()&quot;>
-  <div class="wrapper">
-    <div id="headerid" class="big-bg">
-      <h1 class="page-title">PLACEAT</h1>
+  <!-- ==========================================
+       HEADER BAR
+  =========================================== -->
+  <header class="app-header">
+    <div class="header-inner">
+      <a href="#top" class="brand">
+        <span class="brand-icon">🍽️</span>
+        <div class="brand-text">
+          <span class="brand-title">PLACEAT</span>
+          <span class="brand-sub">INSTANT MEAL DECIDER</span>
+        </div>
+      </a>
+
+      <div class="header-right">
+        <span class="selected-counter">候補 <strong id="active-count">16</strong> / 16</span>
+        <a href="https://rs09s.github.io/" class="back-portfolio">by RS09 ↗</a>
+      </div>
     </div>
+  </header>
 
-    <div class="select">
-      <div id="main">
-        <div class="grid">
-          <div class="item">
-            <img src="images/japanese.jpg" alt="" class="logo"><br>
-            <button type="button" id="agree" class="japanese">和食</button>
-            <button type="button" id="disagree" class="japanese2" style="display: none;">和食</button>
+  <main id="top">
+
+    <!-- ==========================================
+         HERO & ROULETTE STAGE
+    =========================================== -->
+    <section class="hero-stage">
+      <div class="hero-bg" style="background-image: url('images/background.jpg');"></div>
+      <div class="hero-overlay"></div>
+
+      <div class="container hero-content">
+        <div class="hero-copy">
+          <span class="hero-badge">NO MORE INDECISION // 迷う時間をゼロに</span>
+          <h1 class="hero-headline">
+            ごはんどうする？<br />
+            <span>今日から即決。</span>
+          </h1>
+          <p class="hero-desc">
+            食べたい気分のジャンルを残してルーレットを回すだけ。決まったら現在地や駅周辺のマップをその場でチェックできます。
+          </p>
+        </div>
+
+        <!-- Roulette Main Box -->
+        <div class="roulette-card" id="roulette-card">
+          <div class="roulette-status-bar">
+            <span class="status-indicator" id="roulette-status">READY TO SPIN</span>
+            <span class="status-hint">STEP 1: 候補を選んでスピン</span>
           </div>
-          <div class="item">
-            <img src="images/noodle.jpg" alt="" class="logo"><br>
-            <button type="button" id="agree" class="noodle">ラーメン</button>
-            <button type="button" id="disagree" class="noodle2" style="display: none;">ラーメン</button>
+
+          <div class="roulette-window" id="roulette-window">
+            <div class="roulette-thumb-wrap">
+              <img src="images/yakiniku.jpg" alt="選択されたジャンル" id="roulette-img" class="roulette-img" />
+              <div class="roulette-shine"></div>
+            </div>
+            <div class="roulette-info">
+              <span class="roulette-en" id="roulette-en">TODAY'S PICK</span>
+              <h2 class="roulette-name" id="roulette-name">なに食べる？</h2>
+              <p class="roulette-tagline" id="roulette-tagline">下のボタンを押してルーレットをスタート！</p>
+            </div>
           </div>
-          <div class="item">
-            <img src="images/sushi.jpg" alt="" class="logo"><br>
-            <button type="button" id="agree" class="sushi">寿司</button>
-            <button type="button" id="disagree" class="sushi2" style="display: none;">寿司</button>
+
+          <!-- Spin Controls -->
+          <div class="roulette-actions">
+            <button type="button" class="btn-spin" id="btn-spin">
+              <span class="spin-icon">🎲</span>
+              <span id="btn-spin-text">ルーレットを回す (START)</span>
+            </button>
+            <button type="button" class="btn-stop" id="btn-stop" style="display: none;">
+              <span>⏹ ここでストップ！ (STOP)</span>
+            </button>
           </div>
-          <div class="item">
-            <img src="images/chinese.jpg" alt="" class="logo"><br>
-            <button type="button" id="agree" class="chinese">中華</button>
-            <button type="button" id="disagree" class="chinese2" style="display: none;">中華</button>
-          </div>
-          <div class="item">
-            <img src="images/italian.jpg" alt="" class="logo"><br>
-            <button type="button" id="agree" class="italian">イタリアン</button>
-            <button type="button" id="disagree" class="italian2" style="display: none;">イタリアン</button>
-          </div>
-          <div class="item">
-            <img src="images/asia.jpg" alt="" class="logo"><br>
-            <button type="button" id="agree" class="asia">アジア</button>
-            <button type="button" id="disagree" class="asia2" style="display: none;">アジア</button>
-          </div>
-          <div class="item">
-            <img src="images/yakiniku.jpg" alt="" class="logo"><br>
-            <button type="button" id="agree" class="yakiniku">焼肉</button>
-            <button type="button" id="disagree" class="yakiniku2" style="display: none;">焼肉</button>
-          </div>
-          <div class="item">
-            <img src="images/western.jpg" alt="" class="logo"><br>
-            <button type="button" id="agree" class="western">洋食</button>
-            <button type="button" id="disagree" class="western2" style="display: none;">洋食</button>
-          </div>
-          <div class="item">
-            <img src="images/nabe.jpg" alt="" class="logo"><br>
-            <button type="button" id="agree" class="nabe">鍋</button>
-            <button type="button" id="disagree" class="nabe2" style="display: none;">鍋</button>
-          </div>
-          <div class="item">
-            <img src="images/chicken.jpg" alt="" class="logo"><br>
-            <button type="button" id="agree" class="chicken">焼き鳥</button>
-            <button type="button" id="disagree" class="chicken2" style="display: none;">焼き鳥</button>
-          </div>
-          <div class="item">
-            <img src="images/steak.jpg" alt="" class="logo"><br>
-            <button type="button" id="agree" class="steak">ステーキ</button>
-            <button type="button" id="disagree" class="steak2" style="display: none;">ステーキ</button>
-          </div>
-          <div class="item">
-            <img src="images/seafood.jpg" alt="" class="logo"><br>
-            <button type="button" id="agree" class="seafood">海鮮</button>
-            <button type="button" id="disagree" class="seafood2" style="display: none;">海鮮</button>
-          </div>
-          <div class="item">
-            <img src="images/tempura.jpg" alt="" class="logo"><br>
-            <button type="button" id="agree" class="tempura">天ぷら</button>
-            <button type="button" id="disagree" class="tempura2" style="display: none;">天ぷら</button>
-          </div>
-          <div class="item">
-            <img src="images/okonomiyaki.jpg" alt="" class="logo"><br>
-            <button type="button" id="agree" class="okonomiyaki">お好み焼き</button>
-            <button type="button" id="disagree" class="okonomiyaki2" style="display: none;">お好み焼き</button>
-          </div>
-          <div class="item">
-            <img src="images/curry.jpg" alt="" class="logo"><br>
-            <button type="button" id="agree" class="curry">カレー</button>
-            <button type="button" id="disagree" class="curry2" style="display: none;">カレー</button>
-          </div>
-          <div class="item">
-            <img src="images/fastfood.jpg" alt="" class="logo"><br>
-            <button type="button" id="agree" class="fastfood">ファストフード</button>
-            <button type="button" id="disagree" class="fastfood2" style="display: none;">ファストフード</button><br>
-          </div>
-          <div>
-            <button type="button" class="reset" >Reset</button>
-          </div>
-          <div>
-            <button type="button" class="start" >Start</button>
-            <button type="button" class="stop" style="display: none;">Stop</button>
-            <button type="button" class="restart" style="display: none;">Restart</button>
+
+          <!-- Quick Jump to Map when Decided -->
+          <div class="decided-banner" id="decided-banner" style="display: none;">
+            <button type="button" class="btn-find-nearby" id="btn-find-nearby">
+              <span>📍 このジャンルの周辺店舗をマップで探す</span>
+              <span>↓</span>
+            </button>
           </div>
         </div>
       </div>
+    </section>
 
-      <div id="result">
-        <div class="rand_area">
-          <div class="rand_name"></div>
-          <img src="images/japanese.jpg" alt="" class="logo2 japanese3" style="display: none;">
-          <img src="images/noodle.jpg" alt="" class="logo2 noodle3" style="display: none;">
-          <img src="images/sushi.jpg" alt="" class="logo2 sushi3" style="display: none;">
-          <img src="images/chinese.jpg" alt="" class="logo2 chinese3" style="display: none;">
-          <img src="images/italian.jpg" alt="" class="logo2 italian3" style="display: none;">
-          <img src="images/asia.jpg" alt="" class="logo2 asia3" style="display: none;">
-          <img src="images/yakiniku.jpg" alt="" class="logo2 yakiniku3" style="display: none;">
-          <img src="images/western.jpg" alt="" class="logo2 western3" style="display: none;">
-          <img src="images/nabe.jpg" alt="" class="logo2 nabe3" style="display: none;">
-          <img src="images/chicken.jpg" alt="" class="logo2 chicken3" style="display: none;">
-          <img src="images/steak.jpg" alt="" class="logo2 steak3" style="display: none;">
-          <img src="images/seafood.jpg" alt="" class="logo2 seafood3" style="display: none;">
-          <img src="images/tempura.jpg" alt="" class="logo2 tempura3" style="display: none;">
-          <img src="images/okonomiyaki.jpg" alt="" class="logo2 okonomiyaki3" style="display: none;">
-          <img src="images/curry.jpg" alt="" class="logo2 curry3" style="display: none;">
-          <img src="images/fastfood.jpg" alt="" class="logo2 fastfood3" style="display: none;">
-          <div><button type="button"  class="research" style="display: none;">Nearby Restaurant</button></div>
+    <!-- ==========================================
+         STEP 1: GENRE FILTER & 16 CARDS
+    =========================================== -->
+    <section class="genre-section" id="sec-genres">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <span class="section-step">FILTER CANDIDATES</span>
+            <h2 class="section-title">今日の気分でジャンルを絞り込む</h2>
+            <p class="section-sub">カードをタップすると候補のON（参加）／OFF（除外）を切り替えられます。</p>
+          </div>
+
+          <!-- Mood Quick Presets -->
+          <div class="mood-presets" role="group" aria-label="気分プリセット">
+            <button type="button" class="preset-btn active" data-preset="all">✨ すべてON (16)</button>
+            <button type="button" class="preset-btn" data-preset="meat">🥩 ガッツリ肉・麺</button>
+            <button type="button" class="preset-btn" data-preset="light">🍣 和食・海鮮・あっさり</button>
+            <button type="button" class="preset-btn" data-preset="quick">🍛 サクッとランチ</button>
+            <button type="button" class="preset-btn" data-preset="party">🍺 飲み会・ワイワイ</button>
+            <button type="button" class="preset-btn preset-clear" data-preset="none">すべて解除</button>
+          </div>
+        </div>
+
+        <!-- 16 Genre Cards Grid (Rendered / Managed by JS) -->
+        <div class="genre-grid" id="genre-grid"></div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         STEP 2: FREE GOOGLE MAPS RESTAURANT FINDER
+    =========================================== -->
+    <section class="map-section" id="sec-map">
+      <div class="container">
+        <div class="map-card">
+          <div class="map-card-header">
+            <div>
+              <span class="section-step">NEARBY RESTAURANT FINDER</span>
+              <h2 class="section-title">
+                <span id="map-genre-label">焼肉</span> のお店をマップで探す
+              </h2>
+              <p class="section-sub">
+                現在地（GPS）または駅名・エリア名を指定して、Googleマップ上の周辺店舗をその場でチェックできます。
+              </p>
+            </div>
+          </div>
+
+          <!-- Search Controls: GPS or Area Input + Genre Override -->
+          <div class="map-controls">
+            <div class="location-group">
+              <button type="button" class="btn-gps" id="btn-gps">
+                <span>📡 現在地（GPS）から探す</span>
+              </button>
+              <div class="area-input-wrap">
+                <input
+                  type="text"
+                  id="area-input"
+                  class="area-input"
+                  placeholder="現在地を自動取得中…（または駅名・住所を入力）"
+                  value=""
+                />
+                <button type="button" class="btn-area-search" id="btn-area-search">検索</button>
+              </div>
+            </div>
+
+            <!-- Quick Condition Chips -->
+            <div class="condition-chips">
+              <span class="chip-label">こだわり条件追加：</span>
+              <button type="button" class="cond-chip active" data-cond="">指定なし</button>
+              <button type="button" class="cond-chip" data-cond="高評価 人気">⭐ 高評価・人気</button>
+              <button type="button" class="cond-chip" data-cond="ランチ">☀️ ランチ</button>
+              <button type="button" class="cond-chip" data-cond="ディナー 個室">🌙 ディナー・個室</button>
+              <button type="button" class="cond-chip" data-cond="安い コスパ">💴 コスパ重視</button>
+            </div>
+          </div>
+
+          <!-- Status Message -->
+          <div class="map-status-bar" id="map-status-bar">
+            <span id="map-query-display">検索中：「東京駅 焼肉」</span>
+          </div>
+
+          <!-- Embedded Google Map (Zero API Key Required, 100% Google Places DB Coverage!) -->
+          <div class="map-frame-wrap">
+            <iframe
+              id="google-map-iframe"
+              title="周辺レストランマップ"
+              src="https://maps.google.com/maps?q=%E6%9D%B1%E4%BA%AC%E9%A7%85+%E7%84%BC%E8%82%89&t=m&z=15&output=embed&iwloc=near"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              allowfullscreen
+            ></iframe>
+          </div>
+
+          <!-- Direct Action Links to Google Maps App / Tabelog / Hotpepper -->
+          <div class="external-search-bar">
+            <div class="ext-note">さらに詳しく口コミや営業時間・予約枠を見る：</div>
+            <div class="ext-buttons">
+              <a
+                href="https://www.google.com/maps/search/?api=1&query=%E6%9D%B1%E4%BA%AC%E9%A7%85+%E7%84%BC%E8%82%89"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="ext-btn ext-gmaps"
+                id="link-gmaps"
+              >
+                <span>🗺️ Googleマップアプリで一覧を開く</span>
+                <span>↗</span>
+              </a>
+              <a
+                href="https://tabelog.com/rstLst/?vs=1&sk=%E7%84%BC%E8%82%89"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="ext-btn ext-tabelog"
+                id="link-tabelog"
+              >
+                <span>🍽️ 食べログで探す</span>
+                <span>↗</span>
+              </a>
+              <a
+                href="https://www.google.com/search?q=%E6%9D%B1%E4%BA%AC%E9%A7%85+%E7%84%BC%E8%82%89+%E3%81%8A%E3%81%99%E3%81%99%E3%82%81"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="ext-btn ext-web"
+                id="link-web"
+              >
+                <span>🔍 おすすめ記事を検索</span>
+                <span>↗</span>
+              </a>
+            </div>
+          </div>
+
         </div>
       </div>
-    </div>
+    </section>
 
-    <div class="select2">
-      <div id="researchmap" class="map" style="display: none;"></div> <!-- 地図を表示する領域 -->
-      <div id="results" class="para" style="display: none;"></div>
-    </div>
-  </div><!-- wraperの終わり -->
+  </main>
 
-  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBkyQydFme_fjSA6o7NICyJN1SreZQ-fi0&libraries=places"></script>
-  <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-  <script type="text/javascript" src="js/javascript.js"></script>
-  <footer>
-    <div class="wrapper">
-      <p><small>&copy; 2020</small><p>
+  <!-- ==========================================
+       FOOTER
+  =========================================== -->
+  <footer class="app-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <strong>PLACEAT（プレイスイート）</strong> — ごはんどうする？今日から即決！
       </div>
-    </footer>
-  </body>
-  </html>
+      <div class="footer-links">
+        <a href="https://rs09s.github.io/">Portfolio (RS09)</a>
+        <a href="https://sukibare.jp" target="_blank" rel="noopener noreferrer">スキバレ (Suki-Bare)</a>
+        <a href="https://rs09s.github.io/autocalc/">AutoCalc</a>
+        <a href="https://x.com/rs09_lab" target="_blank" rel="noopener noreferrer">X (@rs09_lab)</a>
+      </div>
+      <div class="footer-copy">&copy; 2020–2026 RYUTA SAKAMOTO (RS09).</div>
+    </div>
+  </footer>
+
+  <script src="js/javascript.js"></script>
+</body>
+</html>
